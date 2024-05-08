@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.izpan</groupId>
+        <artifactId>panis-boot-starter</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <version>1.0.0-SNAPSHOT</version>
+    <name>panis-boot-starter-database-redis</name>
+    <artifactId>panis-boot-starter-database-redis</artifactId>
+    <description>PanisBoot Starter - Key-Value数据库 Redis</description>
+
+    <properties>
+        <spring.boot.redis.version>3.2.4</spring.boot.redis.version>
+        <commons.pool2.version>2.12.0</commons.pool2.version>
+    </properties>
+
+    <dependencies>
+        <!-- Redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>${spring.boot.redis.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.yaml</groupId>
+                    <artifactId>snakeyaml</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Commons Pool2 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons.pool2.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

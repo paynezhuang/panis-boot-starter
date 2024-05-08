@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.izpan</groupId>
+        <artifactId>panis-boot-starter</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <version>1.0.0-SNAPSHOT</version>
+    <name>panis-boot-starter-sa-token</name>
+    <artifactId>panis-boot-starter-sa-token</artifactId>
+    <description>PanisBoot Starter - Sa Token 权限鉴权</description>
+
+    <properties>
+        <sa-token.version>1.37.0</sa-token.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- PanisBoot Starter Common -->
+        <dependency>
+            <groupId>com.izpan</groupId>
+            <artifactId>panis-boot-starter-common</artifactId>
+        </dependency>
+
+        <!-- PanisBoot Starter Database Redis -->
+        <dependency>
+            <groupId>com.izpan</groupId>
+            <artifactId>panis-boot-starter-database-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-spring-boot3-starter</artifactId>
+            <version>${sa-token.version}</version>
+        </dependency>
+
+        <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-redis-jackson</artifactId>
+            <version>${sa-token.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-redis</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-jwt</artifactId>
+            <version>${sa-token.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>cn.hutool</groupId>
+                    <artifactId>hutool-jwt</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-spring-aop</artifactId>
+            <version>${sa-token.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-aop</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-jwt</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

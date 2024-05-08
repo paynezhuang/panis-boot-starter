@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.izpan</groupId>
+        <artifactId>panis-boot-starter</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <version>1.0.0-SNAPSHOT</version>
+    <name>panis-boot-starter-database-mysql</name>
+    <artifactId>panis-boot-starter-database-mysql</artifactId>
+    <description>PanisBoot Starter - 数据库 MySQL</description>
+
+    <properties>
+        <mysql.version>8.3.0</mysql.version>
+    </properties>
+
+    <dependencies>
+        <!-- PanisBoot Starter Common -->
+        <dependency>
+            <groupId>com.izpan</groupId>
+            <artifactId>panis-boot-starter-common</artifactId>
+        </dependency>
+
+        <!-- Mysql Connector -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

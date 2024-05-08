@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.izpan</groupId>
+        <artifactId>panis-boot-starter</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <version>1.0.0-SNAPSHOT</version>
+    <name>panis-boot-starter-code-generator</name>
+    <artifactId>panis-boot-starter-code-generator</artifactId>
+    <description>PanisBoot Starter - 代码生成器</description>
+
+    <properties>
+        <mybatis.plus.generator.version>3.5.5</mybatis.plus.generator.version>
+        <freemarker.version>2.3.32</freemarker.version>
+    </properties>
+
+    <dependencies>
+        <!-- Mybatis Plus Generator -->
+        <!-- https://baomidou.com/pages/779a6e/ -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis.plus.generator.version}</version>
+        </dependency>
+        <!-- FreeMaker -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${freemarker.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
