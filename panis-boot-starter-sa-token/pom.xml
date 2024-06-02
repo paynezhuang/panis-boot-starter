@@ -16,7 +16,7 @@
     <description>PanisBoot Starter - Sa Token 权限鉴权</description>
 
     <properties>
-        <sa-token.version>1.37.0</sa-token.version>
+        <sa-token.version>1.38.0</sa-token.version>
     </properties>
 
     <dependencies>
