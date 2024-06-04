@@ -2,7 +2,7 @@
 
 ![SpringBoot](https://img.shields.io/badge/Spring%20Boot-3.3.0-blue.svg)
 ![JDK](https://img.shields.io/badge/JDK-21+-blue.svg)
-![Version](https://img.shields.io/badge/Version-1.0.0--SNAPSHOT-blue.svg)
+![Version](https://img.shields.io/badge/Version-1.0.1--SNAPSHOT-blue.svg)
 [![License](https://img.shields.io/badge/License-Apache%20License%202.0-B9D6AF.svg)](./LICENSE)
 <br/>
 [![Author](https://img.shields.io/badge/Author-paynezhuang-green.svg)](https://github.com/paynezhuang)
@@ -17,9 +17,9 @@ PanisBoot Starter
 ├── panis-boot-starter-common -- 基础模块
 ├── panis-boot-starter-database-mybatis-plus -- MyBatis Plus
 ├── panis-boot-starter-database-mysql -- MySQL 数据库
-├── panis-boot-starter-database-redis -- Redis
+├── panis-boot-starter-database-redis -- Redis 缓存
 ├── panis-boot-starter-job-quartz -- Quartz 调度
-├── panis-boot-starter-sa-token -- Sa Tokan 鉴权
+├── panis-boot-starter-sa-token -- Sa Token 鉴权
 └── pom.xml -- 公共依赖
 ```
 
