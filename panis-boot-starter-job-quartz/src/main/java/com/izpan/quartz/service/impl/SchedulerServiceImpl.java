@@ -281,7 +281,7 @@ public class SchedulerServiceImpl implements ISchedulerService {
      *
      * @param setup {@linkplain SchedulerSetup} 作业设置
      * @return {@link JobDetail }
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-22 - 03:38:42
      */
     private JobDetail buildJobDetail(SchedulerSetup setup) {
@@ -309,7 +309,7 @@ public class SchedulerServiceImpl implements ISchedulerService {
      *
      * @param setup {@linkplain SchedulerSetup} 作业设置
      * @return {@link CronTrigger }
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-22 - 03:39:08
      */
     private CronTrigger buildCronTrigger(SchedulerSetup setup) {

@@ -21,7 +21,7 @@ public interface ISchedulerService {
      * 设置调度器
      *
      * @param scheduler 调度器
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-25 - 09:05:10
      */
     void setScheduler(Scheduler scheduler);
@@ -31,7 +31,7 @@ public interface ISchedulerService {
      *
      * @param setup 调度任务设置对象
      * @return {@linkplain Boolean} 是否添加成功
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:40:32
      */
     boolean add(SchedulerSetup setup);
@@ -41,7 +41,7 @@ public interface ISchedulerService {
      *
      * @param setup 调度任务设置对象
      * @return boolean
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-22 - 02:56:56
      */
     boolean update(SchedulerSetup setup);
@@ -50,7 +50,7 @@ public interface ISchedulerService {
      * 暂停任务
      *
      * @param jobKey 任务对象
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:41:04
      */
     void pause(JobKey jobKey);
@@ -60,7 +60,7 @@ public interface ISchedulerService {
      *
      * @param jobName  任务名称
      * @param jobGroup 任务组名称
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:41:04
      */
     void pause(String jobName, String jobGroup);
@@ -69,7 +69,7 @@ public interface ISchedulerService {
      * 按组暂停任务
      *
      * @param groupName 组名称
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:41:20
      */
     void pauseGroup(String groupName);
@@ -78,7 +78,7 @@ public interface ISchedulerService {
      * 恢复任务
      *
      * @param jobKey 任务对象
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:41:33
      */
     void resume(JobKey jobKey);
@@ -88,7 +88,7 @@ public interface ISchedulerService {
      *
      * @param jobName  任务名称
      * @param jobGroup 任务组名称
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:47:41
      */
     void resume(String jobName, String jobGroup);
@@ -97,7 +97,7 @@ public interface ISchedulerService {
      * 按组恢复任务
      *
      * @param groupName 组名称
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:41:39
      */
     void resumeGroup(String groupName);
@@ -107,7 +107,7 @@ public interface ISchedulerService {
      *
      * @param jobKey 任务对象
      * @return {@linkplain Boolean} 是否删除成功
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:41:50
      */
     boolean delete(JobKey jobKey, TriggerKey triggerKey);
@@ -120,7 +120,7 @@ public interface ISchedulerService {
      * @param triggerName  触发器名称
      * @param triggerGroup 触发器组别
      * @return {@linkplain Boolean} 是否删除成功
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:49:07
      */
     boolean delete(String jobName, String jobGroup, String triggerName, String triggerGroup);
@@ -129,7 +129,7 @@ public interface ISchedulerService {
      * 立即执行任务
      *
      * @param jobKey 任务对象
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-23 - 10:44:51
      */
     void immediate(JobKey jobKey);
@@ -139,7 +139,7 @@ public interface ISchedulerService {
      *
      * @param jobName  作业名称
      * @param jobGroup 作业组别
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-23 - 10:45:03
      */
     void immediate(String jobName, String jobGroup);
@@ -148,7 +148,7 @@ public interface ISchedulerService {
      * 暂停触发器
      *
      * @param triggerKey 触发器 Key
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:42:01
      */
     void pauseTrigger(TriggerKey triggerKey);
@@ -158,7 +158,7 @@ public interface ISchedulerService {
      *
      * @param triggerName  触发器名称
      * @param triggerGroup 触发器组别
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:49:31
      */
     void pauseTrigger(String triggerName, String triggerGroup);
@@ -167,7 +167,7 @@ public interface ISchedulerService {
      * 按组暂停触发器
      *
      * @param groupName 触发器组别
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:42:09
      */
     void pauseTriggerGroup(String groupName);
@@ -176,7 +176,7 @@ public interface ISchedulerService {
      * 恢复触发器
      *
      * @param triggerKey 触发器 Key
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:42:17
      */
     void resumeTrigger(TriggerKey triggerKey);
@@ -186,7 +186,7 @@ public interface ISchedulerService {
      *
      * @param triggerName  触发器名称
      * @param triggerGroup 触发器组别
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:50:24
      */
     void resumeTrigger(String triggerName, String triggerGroup);
@@ -195,7 +195,7 @@ public interface ISchedulerService {
      * 按组恢复触发器
      *
      * @param groupName 组名称
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 04:42:25
      */
     void resumeTriggerGroup(String groupName);
@@ -205,7 +205,7 @@ public interface ISchedulerService {
      *
      * @param triggerKey 触发器 Key
      * @return {@linkplain Boolean} 是否删除成功
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 05:14:58
      */
     boolean unscheduleJob(TriggerKey triggerKey);
@@ -216,7 +216,7 @@ public interface ISchedulerService {
      * @param triggerName  触发器名称
      * @param triggerGroup 触发器组别
      * @return boolean
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-20 - 05:36:03
      */
     boolean unscheduleJob(String triggerName, String triggerGroup);
@@ -236,7 +236,7 @@ public interface ISchedulerService {
      * @param triggerName  触发器名称
      * @param triggerGroup 触发器组别
      * @return boolean
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-21 - 12:14:48
      */
     boolean checkState(String triggerName, String triggerGroup);
@@ -248,7 +248,7 @@ public interface ISchedulerService {
      * @param triggerGroup 触发器组别
      * @param state        {@linkplain Trigger.TriggerState } 状态
      * @return boolean
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-21 - 12:14:48
      */
     boolean checkState(String triggerName, String triggerGroup, Trigger.TriggerState state);
@@ -258,7 +258,7 @@ public interface ISchedulerService {
      *
      * @param triggerKey 触发器 Key
      * @return boolean
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-21 - 12:15:19
      */
     boolean checkState(TriggerKey triggerKey);
@@ -269,7 +269,7 @@ public interface ISchedulerService {
      * @param triggerKey 触发器 Key
      * @param state      {@linkplain Trigger.TriggerState } 状态
      * @return boolean
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-21 - 12:15:19
      */
     boolean checkState(TriggerKey triggerKey, Trigger.TriggerState state);
@@ -279,7 +279,7 @@ public interface ISchedulerService {
      *
      * @param triggerGroup 触发器组别
      * @return {@linkplain Boolean} 是否全部暂停成功
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-21 - 12:28:35
      */
     boolean checkStateGroup(String triggerGroup);
@@ -290,7 +290,7 @@ public interface ISchedulerService {
      * @param triggerGroup 触发器组别
      * @param state        {@linkplain Trigger.TriggerState } 状态
      * @return {@linkplain Boolean} 是否全部暂停成功
-     * @author payne.zhuang <payne.zhuang@gmail.com>
+     * @author payne.zhuang <paynezhuang@gmail.com>
      * @CreateTime 2024-05-21 - 12:28:35
      */
     boolean checkStateGroup(String triggerGroup, Trigger.TriggerState state);
