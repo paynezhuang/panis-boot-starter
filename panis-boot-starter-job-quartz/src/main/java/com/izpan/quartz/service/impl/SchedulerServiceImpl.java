@@ -314,14 +314,6 @@ public class SchedulerServiceImpl implements ISchedulerService {
      */
     private CronTrigger buildCronTrigger(SchedulerSetup setup) {
         // 创建并配置一个新的Cron触发器
-        SimpleTrigger simpleTrigger = TriggerBuilder.newTrigger()
-                .withIdentity(setup.getTriggerName(), setup.getTriggerGroup())
-                .startNow()
-                .withDescription(setup.getTriggerDescription())
-                .withSchedule(SimpleScheduleBuilder.simpleSchedule()
-                        .repeatForever()
-                )
-                .build();
         TriggerBuilder<CronTrigger> cronTriggerBuilder = TriggerBuilder.newTrigger()
                 .withIdentity(setup.getTriggerName(), setup.getTriggerGroup())
                 .startNow()
