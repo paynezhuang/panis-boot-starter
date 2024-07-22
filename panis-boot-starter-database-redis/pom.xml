@@ -15,7 +15,7 @@
     <description>PanisBoot Starter - Key-Value数据库 Redis</description>
 
     <properties>
-        <spring.boot.redis.version>3.3.0</spring.boot.redis.version>
+        <spring.boot.redis.version>3.3.2</spring.boot.redis.version>
         <commons.pool2.version>2.12.0</commons.pool2.version>
     </properties>
 

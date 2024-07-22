@@ -15,7 +15,7 @@
     <description>PanisBoot Starter - Key-Value数据库 Redis</description>
 
     <properties>
-        <spring.boot.quartz.version>3.3.0</spring.boot.quartz.version>
+        <spring.boot.quartz.version>3.3.2</spring.boot.quartz.version>
     </properties>
 
     <dependencies>

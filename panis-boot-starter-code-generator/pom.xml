@@ -15,8 +15,8 @@
     <description>PanisBoot Starter - 代码生成器</description>
 
     <properties>
-        <mybatis.plus.generator.version>3.5.5</mybatis.plus.generator.version>
-        <freemarker.version>2.3.32</freemarker.version>
+        <mybatis.plus.generator.version>3.5.7</mybatis.plus.generator.version>
+        <freemarker.version>2.3.33</freemarker.version>
     </properties>
 
     <dependencies>
