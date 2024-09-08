@@ -6,10 +6,10 @@
     <parent>
         <groupId>com.izpan</groupId>
         <artifactId>panis-boot-starter</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.4-SNAPSHOT</version>
     </parent>
 
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
     <name>panis-boot-starter-common</name>
     <artifactId>panis-boot-starter-common</artifactId>
     <description>PanisBoot Starter - Common 基础模块</description>
