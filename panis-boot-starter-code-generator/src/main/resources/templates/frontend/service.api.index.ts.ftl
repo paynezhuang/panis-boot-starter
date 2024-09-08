@@ -1,0 +1,1 @@
+export * from './${module?lower_case}';
