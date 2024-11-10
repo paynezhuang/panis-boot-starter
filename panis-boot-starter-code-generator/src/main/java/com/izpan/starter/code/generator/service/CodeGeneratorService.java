@@ -19,6 +19,7 @@
 
 package com.izpan.starter.code.generator.service;
 
+import cn.hutool.core.io.FileUtil;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.builder.CustomFile;
@@ -38,6 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.sql.DataSource;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -109,8 +111,9 @@ public class CodeGeneratorService {
      */
     private static void buildGlobalConfig(AutoGenerator autoGenerator, GeneratorConfig generatorConfig) {
         // 定义输出路径，如有传入则使用传入的路径，否则使用默认路径
-        generatorConfig.setOutPutDir(StringUtils.defaultIfEmpty(generatorConfig.getOutPutDir(), "target/code-generator"));
-
+        generatorConfig.setOutPutDir(StringUtils.defaultIfEmpty(generatorConfig.getOutPutDir(),
+                Paths.get(System.getProperty("user.dir")) + "/target/code-generator"));
+        FileUtil.clean(generatorConfig.getOutPutDir());
         // 设置作者
         GlobalConfig globalConfig = new GlobalConfig.Builder()
                 .author(generatorConfig.getAuthor())
