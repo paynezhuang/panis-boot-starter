@@ -125,7 +125,7 @@ watch(visible, () => {
                     <NRadio v-for="item in dictOptions('${column.dictCode}')" :key="item.value" :value="item.value" :label="item.label" />
                 </NRadioGroup>
                 <#else>
-                <NInput v-model:value="model.path="${column.propertyName}"" :placeholder="$t('page.${module?lower_case}.${propertyTableName}.form.${column.propertyName}')" />
+                <NInput v-model:value="model.${column.propertyName}" :placeholder="$t('page.${module?lower_case}.${propertyTableName}.form.${column.propertyName}')" />
                 </#if>
             </NFormItem>
             </#list>

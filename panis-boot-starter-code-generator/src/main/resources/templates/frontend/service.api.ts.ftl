@@ -1,8 +1,8 @@
 import { request } from '@/service/request';
 
-// =============== ${module} Begin ===============
-
 <#assign upperTableName = upperPropertyTableName>
+
+// =============== ${upperTableName} Begin ===============
 
 /** get ${propertyTableName} list */
 export function fetchGet${upperTableName}List(params?: Api.${module}.${upperTableName}SearchParams) {
@@ -40,4 +40,4 @@ export function fetchDelete${upperTableName}(data: Api.Common.DeleteParams) {
     });
 }
 
-// =============== ${module} End  ===============
+// =============== ${upperTableName} End  ===============

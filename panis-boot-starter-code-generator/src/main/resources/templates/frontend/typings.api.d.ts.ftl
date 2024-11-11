@@ -24,10 +24,6 @@ declare namespace Api {
             <#list editColumns as column>
                 '${column.propertyName}'<#if !column?is_last> | </#if>
             </#list>
-            <#list tableColumnList as column>
-                '${column.propertyName}'<#if !column?is_last> | </#if>
-            </#list>
-            <#else>
             >;
         </#if>
 
