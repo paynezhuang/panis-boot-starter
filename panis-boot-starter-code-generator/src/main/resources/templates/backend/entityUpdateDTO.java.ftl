@@ -50,6 +50,9 @@ public class ${entity}UpdateDTO implements Serializable {
 public class ${entity} {
 </#if>
 
+    @Schema(description = "ID")
+    private Long id;
+
 <#------------  BEGIN 字段循环遍历  ------------>
 <#assign editColumns = tableColumnList?filter(column -> column.edit == '1')>
 <#list editColumns as column>

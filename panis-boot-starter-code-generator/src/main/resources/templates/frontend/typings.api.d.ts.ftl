@@ -19,7 +19,7 @@ declare namespace Api {
 
         /** ${upperTableName} edit model */
         <#assign editColumns = tableColumnList?filter(column -> column.edit == '1')>
-        type ${upperTableName}Edit = Pick<Api.${module}.${upperTableName},
+        type ${upperTableName}Edit = Pick<Api.${module}.${upperTableName}, 'id' |
         <#if editColumns??>
             <#list editColumns as column>
                 '${column.propertyName}'<#if !column?is_last> | </#if>
