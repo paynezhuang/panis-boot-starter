@@ -52,6 +52,7 @@
         <hutool.version>5.8.29</hutool.version>
         <freemarker.version>2.3.33</freemarker.version>
 
+        <snakeyaml.version>2.3</snakeyaml.version>
         <mysql.version>8.3.0</mysql.version>
         <mybatis.version>3.0.3</mybatis.version>
         <mybatis.plus.version>3.5.7</mybatis.plus.version>
@@ -167,11 +168,11 @@
             </dependency>
 
             <!-- 解决 CVE-2022-1471 -->
-<!--            <dependency>-->
-<!--                <groupId>org.yaml</groupId>-->
-<!--                <artifactId>snakeyaml</artifactId>-->
-<!--                <version>${snakeyaml.version}</version>-->
-<!--            </dependency>-->
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
 
             <!-- Logback -->
             <dependency>
