@@ -14,11 +14,6 @@
     <artifactId>panis-boot-starter-code-generator</artifactId>
     <description>PanisBoot Starter - 代码生成器</description>
 
-    <properties>
-        <mybatis.plus.generator.version>3.5.7</mybatis.plus.generator.version>
-        <freemarker.version>2.3.33</freemarker.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.izpan</groupId>
@@ -29,13 +24,11 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
-            <version>${mybatis.plus.generator.version}</version>
         </dependency>
         <!-- FreeMaker -->
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>${freemarker.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>

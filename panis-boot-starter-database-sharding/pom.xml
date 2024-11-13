@@ -10,9 +10,9 @@
     </parent>
 
     <version>1.0.4-SNAPSHOT</version>
-    <name>panis-boot-starter-job-quartz</name>
-    <artifactId>panis-boot-starter-job-quartz</artifactId>
-    <description>PanisBoot Starter - Key-Value数据库 Redis</description>
+    <name>panis-boot-starter-database-sharding</name>
+    <artifactId>panis-boot-starter-database-sharding</artifactId>
+    <description>PanisBoot Starter - 分库分表 ShardingSphere</description>
 
     <dependencies>
         <!-- PanisBoot Starter Common -->
@@ -21,10 +21,16 @@
             <artifactId>panis-boot-starter-common</artifactId>
         </dependency>
 
-        <!-- Quartz -->
+        <!-- ShardingSphere JDBC Core Spring Boot Starter -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz</artifactId>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>quartz</artifactId>
+                    <groupId>org.quartz-scheduler</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

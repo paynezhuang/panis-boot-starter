@@ -15,10 +15,6 @@
     <artifactId>panis-boot-starter-database-mysql</artifactId>
     <description>PanisBoot Starter - 数据库 MySQL</description>
 
-    <properties>
-        <mysql.version>8.3.0</mysql.version>
-    </properties>
-
     <dependencies>
         <!-- PanisBoot Starter Common -->
         <dependency>
@@ -30,7 +26,6 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <version>${mysql.version}</version>
         </dependency>
 
     </dependencies>

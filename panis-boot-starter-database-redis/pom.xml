@@ -14,30 +14,17 @@
     <artifactId>panis-boot-starter-database-redis</artifactId>
     <description>PanisBoot Starter - Key-Value数据库 Redis</description>
 
-    <properties>
-        <spring.boot.redis.version>3.3.2</spring.boot.redis.version>
-        <commons.pool2.version>2.12.0</commons.pool2.version>
-    </properties>
-
     <dependencies>
         <!-- Redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>${spring.boot.redis.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.yaml</groupId>
-                    <artifactId>snakeyaml</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- Commons Pool2 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
-            <version>${commons.pool2.version}</version>
         </dependency>
 
     </dependencies>

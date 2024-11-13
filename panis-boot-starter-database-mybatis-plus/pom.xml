@@ -14,11 +14,6 @@
     <artifactId>panis-boot-starter-database-mybatis-plus</artifactId>
     <description>PanisBoot Starter - 数据库 MySQL</description>
 
-    <properties>
-        <mybatis.version>3.0.3</mybatis.version>
-        <mybatis.plus.version>3.5.7</mybatis.plus.version>
-    </properties>
-
     <dependencies>
         <!-- PanisBoot Starter Common -->
         <dependency>
@@ -30,14 +25,12 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
-            <version>${mybatis.version}</version>
         </dependency>
 
         <!-- Mybatis Plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis.plus.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.yaml</groupId>

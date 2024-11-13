@@ -15,10 +15,6 @@
     <artifactId>panis-boot-starter-sa-token</artifactId>
     <description>PanisBoot Starter - Sa Token 权限鉴权</description>
 
-    <properties>
-        <sa-token.version>1.38.0</sa-token.version>
-    </properties>
-
     <dependencies>
 
         <!-- PanisBoot Starter Common -->
@@ -36,14 +32,12 @@
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-spring-boot3-starter</artifactId>
-            <version>${sa-token.version}</version>
         </dependency>
 
         <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-redis-jackson</artifactId>
-            <version>${sa-token.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -55,7 +49,6 @@
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-jwt</artifactId>
-            <version>${sa-token.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>cn.hutool</groupId>
@@ -67,7 +60,6 @@
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-spring-aop</artifactId>
-            <version>${sa-token.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -79,7 +71,6 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-jwt</artifactId>
-            <version>${hutool.version}</version>
         </dependency>
 
     </dependencies>
