@@ -51,7 +51,7 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
         <#list searchColumns as column>
         <#assign propertyName = column.propertyName?cap_first>
         <#if column.searchType != ''>
-            .${column.searchType!}(ObjectUtils.isNotEmpty(${table.entityPath!}BO.get${propertyName}()), ${entity}::get${propertyName}, ${table.entityPath!}BO.get${propertyName}())<#if column?is_last>;</#if>
+            .${column.searchType!}(ObjectUtils.isNotEmpty(${table.entityPath!}BO.get${propertyName}()), ${entity}::get${propertyName}, ${table.entityPath!}BO.get${propertyName}())<#if column?is_last>.orderByDesc(${entity}::getCreateTime);</#if>
         </#if>
         </#list>
         </#if>
