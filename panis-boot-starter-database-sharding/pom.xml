@@ -21,17 +21,19 @@
             <artifactId>panis-boot-starter-common</artifactId>
         </dependency>
 
-        <!-- ShardingSphere JDBC Core Spring Boot Starter -->
+        <!-- ShardingSphere JDBC -->
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
-            <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+            <artifactId>shardingsphere-jdbc</artifactId>
+            <version>5.5.1</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>quartz</artifactId>
-                    <groupId>org.quartz-scheduler</groupId>
+                    <groupId>org.apache.shardingsphere</groupId>
+                    <artifactId>shardingsphere-test-util</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
+
     </dependencies>
 
 </project>
