@@ -55,8 +55,10 @@
         <snakeyaml.version>2.3</snakeyaml.version>
         <mysql.version>8.3.0</mysql.version>
         <mybatis.version>3.0.3</mybatis.version>
+        <druid.version>1.2.23</druid.version>
         <mybatis.plus.version>3.5.7</mybatis.plus.version>
         <mybatis.plus.generator.version>3.5.7</mybatis.plus.generator.version>
+        <mybatis.dynamic.datasource.version>4.3.1</mybatis.dynamic.datasource.version>
         <commons.pool2.version>2.12.0</commons.pool2.version>
         <sharding.version>5.2.1</sharding.version>
         <sa-token.version>1.39.0</sa-token.version>
@@ -188,6 +190,13 @@
                 <version>${mysql.version}</version>
             </dependency>
 
+            <!-- Druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-3-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
             <!-- Mybatis -->
             <dependency>
                 <groupId>org.mybatis</groupId>
@@ -198,7 +207,7 @@
             <!-- Mybatis Plus -->
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
                 <version>${mybatis.plus.version}</version>
             </dependency>
             <!-- Mybatis Plus Generator -->
@@ -207,6 +216,13 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
                 <version>${mybatis.plus.generator.version}</version>
+            </dependency>
+
+            <!-- Dynamic DataSource -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>
+                <version>${mybatis.dynamic.datasource.version}</version>
             </dependency>
 
             <!-- FreeMaker -->
