@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.izpan.starter.oss.config.OssAutoConfiguration

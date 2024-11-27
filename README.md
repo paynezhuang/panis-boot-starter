@@ -18,7 +18,9 @@ PanisBoot Starter
 ├── panis-boot-starter-database-mybatis-plus -- MyBatis Plus
 ├── panis-boot-starter-database-mysql -- MySQL 数据库
 ├── panis-boot-starter-database-redis -- Redis 缓存
+├── panis-boot-starter-database-sharding -- Sharding 分表分库
 ├── panis-boot-starter-job-quartz -- Quartz 调度
+├── panis-boot-starter-job-oss -- OSS 对象存储
 ├── panis-boot-starter-sa-token -- Sa Token 鉴权
 └── pom.xml -- 公共依赖
 ```
