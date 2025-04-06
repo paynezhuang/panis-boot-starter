@@ -19,6 +19,7 @@ PanisBoot Starter
 ├── panis-boot-starter-database-mysql -- MySQL 数据库
 ├── panis-boot-starter-database-redis -- Redis 缓存
 ├── panis-boot-starter-database-sharding -- Sharding 分表分库
+├── panis-boot-starter-job-excel -- Excel 导入导出
 ├── panis-boot-starter-job-quartz -- Quartz 调度
 ├── panis-boot-starter-job-oss -- OSS 对象存储
 ├── panis-boot-starter-sa-token -- Sa Token 鉴权
