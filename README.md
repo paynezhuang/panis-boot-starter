@@ -19,9 +19,9 @@ PanisBoot Starter
 ├── panis-boot-starter-database-mysql -- MySQL 数据库
 ├── panis-boot-starter-database-redis -- Redis 缓存
 ├── panis-boot-starter-database-sharding -- Sharding 分表分库
-├── panis-boot-starter-job-excel -- Excel 导入导出
+├── panis-boot-starter-excel -- Excel 导入导出
 ├── panis-boot-starter-job-quartz -- Quartz 调度
-├── panis-boot-starter-job-oss -- OSS 对象存储
+├── panis-boot-starter-oss -- OSS 对象存储
 ├── panis-boot-starter-sa-token -- Sa Token 鉴权
 └── pom.xml -- 公共依赖
 ```
@@ -29,4 +29,4 @@ PanisBoot Starter
 
 ### 开源协议
 
-项目基于 [Apache License 2.0 © 2024 Zhuang Pan](./LICENSE) 协议，仅供学习参考，商业使用请遵循作者版权信息，作者不保证也不承担任何软件的使用风险。
+项目基于 [Apache License 2.0 © 2025 Zhuang Pan](./LICENSE) 协议，仅供学习参考，商业使用请遵循作者版权信息，作者不保证也不承担任何软件的使用风险。
