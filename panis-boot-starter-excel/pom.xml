@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.izpan</groupId>
+        <artifactId>panis-boot-starter</artifactId>
+        <version>1.0.5-SNAPSHOT</version>
+    </parent>
+
+    <version>1.0.5-SNAPSHOT</version>
+    <name>panis-boot-starter-excel</name>
+    <artifactId>panis-boot-starter-excel</artifactId>
+    <description>PanisBoot Starter - Excel</description>
+
+    <dependencies>
+
+        <!-- PanisBoot Starter Common -->
+        <dependency>
+            <groupId>com.izpan</groupId>
+            <artifactId>panis-boot-starter-common</artifactId>
+        </dependency>
+
+        <!-- FastExcel -->
+        <dependency>
+            <groupId>cn.idev.excel</groupId>
+            <artifactId>fastexcel</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

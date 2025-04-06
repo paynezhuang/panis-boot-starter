@@ -17,28 +17,28 @@
  * limitations under the License.
  */
 
-package com.izpan.starter.common.pool;
+package com.izpan.starter.excel.exception;
+
+import java.io.Serial;
 
 /**
- * 通用字符串常量
+ * Excel 异常
  *
  * @Author payne.zhuang <paynezhuang@gmail.com>
  * @ProjectName panis-boot
- * @ClassName com.izpan.starter.common.pool.StringPools
- * @CreateTime 2024/11/25 - 15:03
+ * @ClassName com.izpan.starter.excel.exception.ExcelException
+ * @CreateTime 2024/12/19 22:52:07
  */
-public final class StringPools {
+public class ExcelException extends RuntimeException {
 
-    private StringPools() {
+    @Serial
+    private static final long serialVersionUID = -2883843851951721307L;
 
+    public ExcelException(String message) {
+        super(message);
     }
 
-    public static final String DOT = ".";
-    public static final String EMPTY = "";
-    public static final String OCTET_STREAM = "application/octet-stream";
-    public static final String SLASH = "/";
-    public static final String UNDERSCORE = "_";
-
-    public static final String XLS_SUFFIX = ".xls";
-    public static final String XLSX_SUFFIX = ".xlsx";
+    public ExcelException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
