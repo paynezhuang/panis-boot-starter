@@ -33,7 +33,7 @@ import com.izpan.starter.code.generator.config.GeneratorConfig;
 import com.izpan.starter.code.generator.constants.GeneratorConstants;
 import com.izpan.starter.code.generator.engine.EnhanceFreemarkerTemplateEngine;
 import com.izpan.starter.code.generator.entity.TableColumn;
-import com.izpan.starter.code.generator.enums.QueryConditionsEnum;
+import com.izpan.starter.code.generator.enums.MPQueryConditionsEnum;
 import com.izpan.starter.common.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -250,8 +250,8 @@ public class CodeGeneratorService {
     private static void buildInjectionConfig(AutoGenerator autoGenerator, GeneratorConfig generatorConfig) {
         GeneratorConfig.Injection injection = generatorConfig.getInjectionConfig();
 
-        // 构建查询条件
-        buildQueryCondition(generatorConfig.getTableColumnList());
+        // 构建 Mybatis Plus 查询条件
+        buildMPQueryCondition(generatorConfig.getTableColumnList());
 
         // 自定义参数
         Map<String, Object> customMap = Optional.ofNullable(injection.getCustomMap()).orElseGet(Maps::newHashMap);
@@ -337,12 +337,12 @@ public class CodeGeneratorService {
      * @author payne.zhuang
      * @CreateTime 2024-09-05 - 10:31:07
      */
-    private static void buildQueryCondition(List<TableColumn> tableColumnList) {
+    private static void buildMPQueryCondition(List<TableColumn> tableColumnList) {
         tableColumnList.stream()
                 .filter(column -> "1".equals(column.getSearch()))
                 .forEach(column -> {
-                    String searchType = StringUtils.defaultIfEmpty(column.getSearchType(), QueryConditionsEnum.EQUAL.getCode());
-                    column.setSearchType(QueryConditionsEnum.getMpValueByCode(searchType));
+                    String searchType = StringUtils.defaultIfEmpty(column.getSearchType(), MPQueryConditionsEnum.EQUAL.getCode());
+                    column.setSearchType(MPQueryConditionsEnum.getMpValueByCode(searchType));
                 });
 
     }

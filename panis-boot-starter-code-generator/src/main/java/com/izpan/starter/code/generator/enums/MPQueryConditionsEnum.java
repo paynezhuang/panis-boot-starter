@@ -25,7 +25,7 @@ import lombok.Getter;
 import java.util.Arrays;
 
 /**
- * 查询条件枚举
+ * MyBaits Plus 查询条件枚举
  *
  * @Author payne.zhuang <paynezhuang@gmail.com>
  * @ProjectName panis-boot
@@ -34,7 +34,7 @@ import java.util.Arrays;
  */
 
 @Getter
-public enum QueryConditionsEnum {
+public enum MPQueryConditionsEnum {
 
     EQUAL("equal", "eq", "等于"),
     NO_EQUAL("noEqual", "ne", "不等于"),
@@ -65,7 +65,7 @@ public enum QueryConditionsEnum {
      */
     private final String description;
 
-    QueryConditionsEnum(String code, String mpValue, String description) {
+    MPQueryConditionsEnum(String code, String mpValue, String description) {
         this.code = code;
         this.mpValue = mpValue;
         this.description = description;
@@ -80,9 +80,9 @@ public enum QueryConditionsEnum {
      * @CreateTime 2024-09-05 - 10:21:06
      */
     public static String getMpValueByCode(String code) {
-        return Arrays.stream(QueryConditionsEnum.values())
+        return Arrays.stream(MPQueryConditionsEnum.values())
                 .filter(condition -> condition.getCode().equals(code))
-                .map(QueryConditionsEnum::getMpValue)
+                .map(MPQueryConditionsEnum::getMpValue)
                 .findFirst()
                 .orElse(GeneratorConstants.EMPTY);
     }
