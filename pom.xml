@@ -6,7 +6,7 @@
 
     <groupId>com.izpan</groupId>
     <artifactId>panis-boot-starter</artifactId>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.6-SNAPSHOT</version>
     <description>PanisBoot Starter</description>
 
     <packaging>pom</packaging>
