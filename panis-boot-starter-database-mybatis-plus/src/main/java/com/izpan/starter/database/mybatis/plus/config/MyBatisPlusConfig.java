@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.izpan.starter.database.mybatis.plus.handler.IDataScopeHandler;
+import com.izpan.starter.database.mybatis.plus.interceptor.DataScopeInterceptor;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,8 +24,11 @@ import org.springframework.context.annotation.Configuration;
 public class MyBatisPlusConfig {
 
     @Bean
-    public MybatisPlusInterceptor mybatisPlusInterceptor() {
-        var interceptor = new MybatisPlusInterceptor();
+    @ConditionalOnBean(IDataScopeHandler.class)
+    public MybatisPlusInterceptor mybatisPlusInterceptor(IDataScopeHandler dataScopeHandler) {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        // 数据权限
+        interceptor.addInnerInterceptor(new DataScopeInterceptor(dataScopeHandler));
         // 分页插件
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
         // 防止全表更新与删除

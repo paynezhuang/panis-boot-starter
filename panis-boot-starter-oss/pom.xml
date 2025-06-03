@@ -9,7 +9,7 @@
         <version>1.0.5-SNAPSHOT</version>
     </parent>
 
-    <version>${parent.version}</version>
+    <version>1.0.5-SNAPSHOT</version>
     <name>panis-boot-starter-oss</name>
     <artifactId>panis-boot-starter-oss</artifactId>
     <description>PanisBoot Starter - OSS 对象存储</description>

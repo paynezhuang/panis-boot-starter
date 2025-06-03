@@ -41,4 +41,15 @@ public final class StringPools {
 
     public static final String XLS_SUFFIX = ".xls";
     public static final String XLSX_SUFFIX = ".xlsx";
+
+    public static final String NULL = "NULL";
+    public static final String SINGLE_QUOTE = "'";
+    public static final String LEFT_BRACKET = "(";
+    public static final String RIGHT_BRACKET = ")";
+    public static final String LEFT_SQ_BRACKET = "[";
+    public static final String RIGHT_SQ_BRACKET = "]";
+    public static final String AND = " AND ";
+    public static final String QUESTION_MARK = "?";
+    public static final String AND_PATTERN = "? AND ?";
+    public static final String COMMA = ",";
 }

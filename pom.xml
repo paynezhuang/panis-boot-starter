@@ -40,35 +40,37 @@
         <maven.compiler.target>21</maven.compiler.target>
         <maven.plugin.version>3.13.0</maven.plugin.version>
         <maven.plugin.jar.version>3.3.0</maven.plugin.jar.version>
+        <maven.plugin.update.versions.version>2.18.0</maven.plugin.update.versions.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Spring Boot -->
-        <spring.boot>3.3.2</spring.boot>
+        <spring.boot.version>3.5.0</spring.boot.version>
 
         <!-- Common -->
-        <lombok.version>1.18.34</lombok.version>
-        <guava.version>33.2.1-jre</guava.version>
-        <gson.version>2.11.0</gson.version>
-        <logback.version>1.5.6</logback.version>
-        <common.lang3.version>3.14.0</common.lang3.version>
-        <common.codec.version>1.16.1</common.codec.version>
-        <hutool.version>5.8.35</hutool.version>
-        <freemarker.version>2.3.33</freemarker.version>
+        <lombok.version>1.18.38</lombok.version>
+        <guava.version>33.4.8-jre</guava.version>
+        <gson.version> 2.12.1</gson.version>
+        <logback.version>1.5.18</logback.version>
+        <common.lang3.version>3.17.0</common.lang3.version>
+        <common.codec.version>1.18.0</common.codec.version>
+        <hutool.version>5.8.38</hutool.version>
+        <freemarker.version>2.3.34</freemarker.version>
 
-        <snakeyaml.version>2.3</snakeyaml.version>
-        <mysql.version>8.3.0</mysql.version>
-        <mybatis.version>3.0.3</mybatis.version>
-        <druid.version>1.2.23</druid.version>
-        <mybatis.plus.version>3.5.7</mybatis.plus.version>
-        <mybatis.plus.generator.version>3.5.7</mybatis.plus.generator.version>
+        <snakeyaml.version>2.4</snakeyaml.version>
+        <mysql.version>8.4.0</mysql.version>
+        <mybatis.version>3.0.4</mybatis.version>
+        <druid.version>1.2.24</druid.version>
+        <mybatis.plus.version>3.5.8</mybatis.plus.version>
+        <mybatis.plus.generator.version>3.5.8</mybatis.plus.generator.version>
         <mybatis.dynamic.datasource.version>4.3.1</mybatis.dynamic.datasource.version>
-        <commons.pool2.version>2.12.0</commons.pool2.version>
+        <commons.pool2.version>2.12.1</commons.pool2.version>
         <sharding.version>5.2.1</sharding.version>
-        <sa-token.version>1.39.0</sa-token.version>
-        <minio.version>8.5.15</minio.version>
-        <fast.excel.version>1.1.0</fast.excel.version>
+        <sa-token.version>1.43.0</sa-token.version>
+        <minio.version>8.5.17</minio.version>
+        <fast.excel.version>1.2.0</fast.excel.version>
         <jakarta.servlet.api.version>6.1.0</jakarta.servlet.api.version>
+        <org.jetbrains.annotations.version>26.0.2</org.jetbrains.annotations.version>
     </properties>
 
     <dependencyManagement>
@@ -128,23 +130,18 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-quartz</artifactId>
-                <version>${spring.boot}</version>
+                <version>${spring.boot.version}</version>
             </dependency>
             <!-- Redis -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>${spring.boot}</version>
+                <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-autoconfigure</artifactId>
-                <version>${spring.boot}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-configuration-processor</artifactId>
-                <version>${spring.boot}</version>
+                <version>${spring.boot.version}</version>
             </dependency>
 
             <!-- Other -->
@@ -321,6 +318,13 @@
                 <scope>provided</scope>
             </dependency>
 
+            <dependency>
+                <groupId>org.jetbrains</groupId>
+                <artifactId>annotations</artifactId>
+                <version>${org.jetbrains.annotations.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -368,6 +372,17 @@
                         <!-- 生成的jar中，不要包含pom.xml和pom.properties这两个文件，减小 jar 体积 -->
                         <addMavenDescriptor>false</addMavenDescriptor>
                     </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${maven.plugin.update.versions.version}</version>
+                <configuration>
+                    <!-- 只检查直接依赖，不检查传递依赖 -->
+                    <processDependencies>true</processDependencies>
+                    <processDependencyManagement>false</processDependencyManagement>
+                    <processPlugins>false</processPlugins>
                 </configuration>
             </plugin>
         </plugins>
