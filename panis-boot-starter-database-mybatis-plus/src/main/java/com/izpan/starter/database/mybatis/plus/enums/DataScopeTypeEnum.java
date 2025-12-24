@@ -22,7 +22,6 @@ package com.izpan.starter.database.mybatis.plus.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -36,7 +35,7 @@ import java.util.Arrays;
 
 @Getter
 @AllArgsConstructor
-public enum DataScopeTypeEnum implements Serializable {
+public enum DataScopeTypeEnum {
     /**
      * 全部数据权限
      */
@@ -65,7 +64,13 @@ public enum DataScopeTypeEnum implements Serializable {
     /**
      * 仅本人数据权限
      */
-    SELF("6", "仅本人数据权限", 6);
+    SELF("6", "仅本人数据权限", 6),
+
+    /**
+     * 未知数据权限（异常情况下的占位）<p>
+     * type 使用 "-1" 表示未识别；priority 使用 Integer.MAX_VALUE，保证在比较优先级时不覆盖任何明确定义的类型。
+     */
+    UN_KNOWN("-1", "未知数据权限", Integer.MAX_VALUE);
 
     private final String type;
     private final String name;
@@ -99,6 +104,37 @@ public enum DataScopeTypeEnum implements Serializable {
                 .filter(typeEnum -> typeEnum.getType().equals(type))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Unknown DataScopeTypeEnum type: " + type));
+    }
+
+    /**
+     * 根据类型获取数据权限类型枚举，找不到则返回默认枚举
+     *
+     * @param type        类型
+     * @param defaultEnum 默认枚举
+     * @return {@link DataScopeTypeEnum } 对象存储枚举
+     * @author payne.zhuang
+     * @CreateTime 2025/12/19
+     */
+    public static DataScopeTypeEnum ofOrDefault(String type, DataScopeTypeEnum defaultEnum) {
+        if (null == type) {
+            return defaultEnum;
+        }
+        return Arrays.stream(values())
+                .filter(typeEnum -> typeEnum.getType().equals(type))
+                .findFirst()
+                .orElse(defaultEnum);
+    }
+
+    /**
+     * SQL 层安全解析：解析失败时返回 UN_KNOWN（用于构建 SQL，避免访问表列导致错误）
+     *
+     * @param type 类型
+     * @return {@link DataScopeTypeEnum } 对象存储枚举
+     * @author payne.zhuang
+     * @CreateTime 2025/12/19
+     */
+    public static DataScopeTypeEnum safeSqlOf(String type) {
+        return ofOrDefault(type, UN_KNOWN);
     }
 
     /**

@@ -84,64 +84,55 @@ public class DataScopeInterceptor implements InnerInterceptor {
      */
     @Override
     public void beforeQuery(Executor executor, MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) {
+        log.debug("[DataScope] msId={} - SQL 拦截器开始执行", ms.getId());
         // 检查是否忽略数据权限
         boolean strategy = InterceptorIgnoreHelper.willIgnoreDataPermission(ms.getId());
         if (strategy) {
-            log.debug("[DataScope] 忽略数据权限，跳过处理, msId={}", ms.getId());
+            log.debug("[DataScope] msId={} - 忽略数据权限策略", ms.getId());
             return;
         }
 
+        String permissionCode = null;
         try {
             // 仅处理 SELECT 语句
             if (ms.getSqlCommandType() != SqlCommandType.SELECT) {
-                log.debug("[DataScope] 非 SELECT 语句，跳过处理, msId={}", ms.getId());
+                log.debug("[DataScope] msId={} - 非 SELECT 语句, 命令类型={}, 跳过处理", ms.getId(), ms.getSqlCommandType());
                 return;
             }
 
             // 获取权限标识
-            String permissionCode = dataScopeHandler.getPermissionCode();
+            permissionCode = dataScopeHandler.getPermissionCode();
             if (permissionCode == null || permissionCode.isEmpty()) {
-                log.debug("[DataScope] 权限标识为空，跳过处理, msId={}", ms.getId());
+                log.debug("[DataScope] msId={} - 权限标识为空, 跳过处理", ms.getId());
                 return;
             }
 
             // 获取数据权限
-            DataScope dataScope = dataScopeHandler.getDataScope(permissionCode);
-
+            DataScope dataScope = dataScopeHandler.getDataScope(ms, permissionCode);
             if (null == dataScope) {
-                log.warn("[DataScope] 数据权限未配置，跳过处理, msId={}", ms.getId());
+                log.debug("[DataScope] 权限码={} msId={} - 数据权限未配置, 跳过处理", permissionCode, ms.getId());
                 return;
             }
 
-            if (DataScopeTypeEnum.ALL.getType().equals(dataScope.getScopeType())) {
-                log.debug("[DataScope] 数据权限为 ALL，无需处理, msId={}", ms.getId());
+            Long userId = dataScope.getCurrentUserId();
+            if (DataScopeTypeEnum.ALL.equals(dataScope.getScopeType())) {
+                log.debug("[DataScope] 用户ID={} 权限码={} msId={} - 数据权限为 ALL, 无需处理",
+                        userId, permissionCode, ms.getId());
                 return;
             }
 
-            // 检查缓存
-            String cacheKey = dataScopeHandler.buildCacheKey(dataScope.getCurrentUserId(), permissionCode, ms.getId(), dataScope.getScopeType());
-            String processedSql = dataScopeHandler.getCachedSql(cacheKey);
-            if (null != processedSql) {
-                log.debug("[DataScope] 使用缓存 SQL, msId={}", ms.getId());
-                PluginUtils.MPBoundSql mpBs = PluginUtils.mpBoundSql(boundSql);
-                mpBs.sql(processedSql);
-                return;
-            }
-
-            // 构建带权限条件的 SQL
+            // 构建带权限条件的 SQL（移除SQL缓存，因为不同查询参数会导致缓存错误）
             PluginUtils.MPBoundSql mpBs = PluginUtils.mpBoundSql(boundSql);
             String originalSql = mpBs.sql();
-            processedSql = buildDataScopeSql(originalSql, dataScope);
+            String processedSql = buildDataScopeSql(originalSql, dataScope);
             mpBs.sql(processedSql);
 
-            // 缓存处理后的 SQL
-            if (!processedSql.equals(originalSql)) {
-                dataScopeHandler.cacheSql(cacheKey, processedSql);
-                log.debug("[DataScope] SQL 已处理并缓存, msId={}, cacheKey={}", ms.getId(), cacheKey);
-            }
-            log.debug("[DataScope] SQL 处理完成, msId={}, originalSql={}, processedSql={}", ms.getId(), originalSql, processedSql);
+            // 记录 SQL 处理日志
+            log.info("[DataScope] 用户ID={} 权限码={}, 权限类型={}, msId={} - SQL 处理完成",
+                    userId, permissionCode, dataScope.getScopeType(), ms.getId());
         } catch (Exception e) {
-            log.error("[DataScope] 处理 SQL 出错, msId={}, sql={}, error={}", ms.getId(), boundSql.getSql(), e.getMessage(), e);
+            log.error("[DataScope] 权限码={} msId={} - SQL 处理异常, sql={}, 错误={}",
+                    permissionCode, ms.getId(), boundSql.getSql(), e.getMessage(), e);
         }
     }
 
@@ -150,7 +141,7 @@ public class DataScopeInterceptor implements InnerInterceptor {
      *
      * @param originalSql 原始 SQL
      * @param dataScope   数据权限信息
-     * @return 处理后的 SQL，若无需处理则返回原 SQL
+     * @return {@link String} 处理后的 SQL，若无需处理则返回原 SQL
      */
     private String buildDataScopeSql(String originalSql, DataScope dataScope) {
         try {
@@ -158,8 +149,10 @@ public class DataScopeInterceptor implements InnerInterceptor {
             processSelect(select, dataScope);
             return select.toString();
         } catch (JSQLParserException e) {
-            log.error("[DataScope] 解析 SQL 失败, sql={}, error={}", originalSql, e.getMessage(), e);
-            return originalSql; // 解析失败返回原 SQL
+            log.error("[DataScope] 用户ID={} 权限码={} - SQL 解析失败, sql={}, 错误={}",
+                    dataScope.getCurrentUserId(), dataScope.getPermissionCode(), originalSql, e.getMessage(), e);
+            // 解析失败返回原 SQL
+            return originalSql;
         }
     }
 
@@ -180,7 +173,8 @@ public class DataScopeInterceptor implements InnerInterceptor {
                 if (s instanceof PlainSelect plainSelect) {
                     setWhere(plainSelect, dataScope);
                 } else {
-                    log.warn("[DataScope] 复杂查询中包含非 PlainSelect 类型，跳过处理, scopeType={}", dataScope.getScopeType());
+                    log.warn("[DataScope] 用户ID={} 权限码={} 权限类型={} - 复杂查询包含非 PlainSelect 类型, 跳过处理",
+                            dataScope.getCurrentUserId(), dataScope.getPermissionCode(), dataScope.getScopeType());
                 }
             });
         }
@@ -203,7 +197,7 @@ public class DataScopeInterceptor implements InnerInterceptor {
             } else {
                 plainSelect.setWhere(dataScopeExpression);
             }
-            log.debug("[DataScope] WHERE 条件注入完成, scopeType={}, userId={}", dataScope.getScopeType(), dataScope.getCurrentUserId());
+            log.debug("[DataScope] 用户ID={} 权限码={} scopeType={} - WHERE 条件注入完成", dataScope.getCurrentUserId(), dataScope.getPermissionCode(), dataScope.getScopeType());
         }
     }
 
@@ -211,25 +205,34 @@ public class DataScopeInterceptor implements InnerInterceptor {
      * 构建数据权限的 SQL 表达式
      *
      * @param dataScope 数据权限信息
-     * @return 权限表达式，若无权限条件则返回 null
+     * @return {@link Expression} 权限表达式，若无权限条件则返回 null
      * @author payne.zhuang
      * @CreateTime 2025-05-29 - 12:17:44
      */
     private Expression buildScopeExpression(DataScope dataScope) {
-        String scopeType = dataScope.getScopeType();
+        DataScopeTypeEnum scope = dataScope.getScopeType();
 
-        // 处理 SELF 类型（当前用户）
-        if (DataScopeTypeEnum.SELF.getType().equals(scopeType)) {
-            return new EqualsTo(new Column(USER_ID_COLUMN), new LongValue(dataScope.getCurrentUserId()));
+        Long userId = dataScope.getCurrentUserId();
+        // 未知类型：返回恒假表达式 1 = 0，避免访问表字段并且不返回数据
+        if (scope == DataScopeTypeEnum.UN_KNOWN) {
+            log.warn("[DataScope] 用户ID={} 权限码={} - 未知权限类型, 权限类型={}, 返回恒假条件", userId, dataScope.getPermissionCode(), scope);
+            return new EqualsTo(new LongValue(1), new LongValue(0));
         }
 
-        // 处理 CUSTOM 类型（自定义规则条件）
-        if (DataScopeTypeEnum.CUSTOM.getType().equals(scopeType) && StringUtils.hasLength(dataScope.getCustomRules())) {
+        // 处理 SELF 类型（当前用户）
+        if (scope == DataScopeTypeEnum.SELF) {
+            return new EqualsTo(new Column(USER_ID_COLUMN), new LongValue(userId));
+        }
+
+        // 处理 CUSTOM 类型（自定义规则）
+        if (scope == DataScopeTypeEnum.CUSTOM && StringUtils.hasLength(dataScope.getCustomRules())) {
             try {
                 return CCJSqlParserUtil.parseCondExpression(dataScope.getCustomRules());
             } catch (JSQLParserException e) {
-                log.error("[DataScope] 解析自定义规则失败, customRules={}, error={}", dataScope.getCustomRules(), e.getMessage(), e);
-                return null; // 明确回退逻辑
+                log.error("[DataScope] 用户ID={} 权限码={} 权限类型={} - 自定义规则解析失败, customRules={}, 错误={}",
+                        userId, dataScope.getPermissionCode(), dataScope.getScopeType(),
+                        dataScope.getCustomRules(), e.getMessage(), e);
+                return null;
             }
         }
 
@@ -237,9 +240,7 @@ public class DataScopeInterceptor implements InnerInterceptor {
         Set<Long> scopeUserIds = dataScope.getScopeUserIds();
         if (!CollectionUtils.isEmpty(scopeUserIds)) {
             Column column = new Column(USER_ID_COLUMN);
-            List<Expression> expressions = scopeUserIds.stream()
-                    .map(id -> (Expression) new LongValue(id))
-                    .toList();
+            List<Expression> expressions = scopeUserIds.stream().map(id -> (Expression) new LongValue(id)).toList();
             return new InExpression(column, new ParenthesedExpressionList<>(expressions));
         }
 

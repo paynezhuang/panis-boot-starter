@@ -19,8 +19,8 @@
 
 package com.izpan.starter.database.mybatis.plus.handler;
 
-import com.google.common.cache.CacheStats;
 import com.izpan.starter.database.mybatis.plus.domain.DataScope;
+import org.apache.ibatis.mapping.MappedStatement;
 
 /**
  * 数据权限处理器接口
@@ -54,109 +54,12 @@ public interface IDataScopeHandler {
     /**
      * 获取数据权限信息
      *
+     * @param ms             MyBatis 映射语句对象
      * @param permissionCode 权限标识
      * @return 数据权限信息
      * @author payne.zhuang
      * @CreateTime 2025-05-12 - 11:22:35
      */
-    DataScope getDataScope(String permissionCode);
+    DataScope getDataScope(MappedStatement ms, String permissionCode);
 
-    /**
-     * 使指定用户的所有权限缓存失效
-     * 当用户角色或权限发生变更时调用此方法，确保下次请求获取最新权限
-     *
-     * @param userId 用户ID
-     * @author payne.zhuang
-     * @CreateTime 2025-05-15 - 10:23:15
-     */
-    void invalidateUserCache(Long userId);
-
-    /**
-     * 使指定权限的所有用户缓存失效
-     * 当权限规则或数据范围定义发生变更时调用此方法，确保所有用户获取最新权限规则
-     *
-     * @param permissionCode 权限标识
-     * @author payne.zhuang
-     * @CreateTime 2025-05-15 - 10:24:32
-     */
-    void invalidatePermissionCache(String permissionCode);
-
-    /**
-     * 获取缓存统计信息
-     * 用于监控缓存性能，包括命中率、加载次数、加载时间等指标
-     *
-     * @return {@link CacheStats} 缓存统计信息
-     * @author payne.zhuang
-     * @CreateTime 2025-05-15 - 10:25:48
-     */
-    CacheStats getCacheStats();
-
-    /**
-     * 获取缓存的SQL
-     *
-     * @param cacheKey 缓存键
-     * @return 缓存的SQL
-     * @author payne.zhuang
-     * @CreateTime 2025-05-28 - 23:00:39
-     */
-    String getCachedSql(String cacheKey);
-
-    /**
-     * 缓存SQL
-     *
-     * @param cacheKey 缓存键
-     * @param sql      SQL
-     * @author payne.zhuang
-     * @CreateTime 2025-05-28 - 23:01:04
-     */
-    void cacheSql(String cacheKey, String sql);
-
-    /**
-     * 构建缓存键
-     *
-     * @param userId         用户ID
-     * @param permissionCode 权限标识
-     * @param msId           MappedStatement ID
-     * @param scopeType      数据权限类型
-     * @return 缓存键
-     * @author payne.zhuang
-     * @CreateTime 2025-05-28 - 23:01:06
-     */
-    String buildCacheKey(Long userId, String permissionCode, String msId, String scopeType);
-
-    /**
-     * 清理SQL缓存
-     * <p>
-     * 清理DataScopeInterceptor中使用的SQL_CACHE缓存
-     * 当数据权限配置变更时，相关的SQL缓存应该被清理以确保使用最新的权限逻辑
-     * </p>
-     *
-     * @author payne.zhuang
-     * @CreateTime 2025-06-02 - 23:35:00
-     */
-    void invalidateSqlCache();
-
-    /**
-     * 按缓存键前缀清理SQL缓存
-     * <p>
-     * 根据缓存键的前缀模式清理相关的SQL缓存
-     * 缓存键格式：userId:permissionCode:msId:scopeType
-     * </p>
-     *
-     * @param keyPrefix 缓存键前缀，如 "1001:" 或 "1001:user:list:"
-     * @author payne.zhuang
-     * @CreateTime 2025-06-02 - 23:36:00
-     */
-    void invalidateSqlCacheByPrefix(String keyPrefix);
-
-    /**
-     * 清理所有缓存
-     * <p>
-     * 清理数据权限结果缓存和SQL缓存，用于系统维护或重大配置变更
-     * </p>
-     *
-     * @author payne.zhuang
-     * @CreateTime 2025-06-02 - 23:37:00
-     */
-    void invalidateAllCache();
 }

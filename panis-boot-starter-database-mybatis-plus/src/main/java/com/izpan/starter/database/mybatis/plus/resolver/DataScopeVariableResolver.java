@@ -80,7 +80,7 @@ public class DataScopeVariableResolver {
      * @param value         包含变量占位符或固定值的字符串
      * @param variableValue 变量的实际值（来自上下文）
      * @param operator      查询条件操作符，用于SQL格式化
-     * @return 格式化后的SQL值
+     * @return {@link String} 格式化后的 SQL 值
      * @author payne.zhuang
      * @CreateTime 2025-06-02 - 16:21
      */
@@ -115,7 +115,7 @@ public class DataScopeVariableResolver {
     }
 
     /**
-     * 格式化变量值为SQL可用的字符串格式
+     * 格式化变量值为 SQL 可用的字符串格式
      * <p>
      * 支持的数据类型：
      * - null: 转换为 "NULL"
@@ -146,7 +146,7 @@ public class DataScopeVariableResolver {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < dateTimeArray.length; i++) {
                     if (i > 0) sb.append(StringPools.COMMA);
-                    // 格式化每个LocalDateTime并加单引号
+                    // 格式化每个 LocalDateTime 并加单引号
                     sb.append(StringPools.SINGLE_QUOTE)
                             .append(dateTimeArray[i].format(DATETIME_FORMATTER))
                             .append(StringPools.SINGLE_QUOTE);
@@ -172,18 +172,18 @@ public class DataScopeVariableResolver {
     }
 
     /**
-     * 根据操作符的valuePattern格式化值
+     * 根据操作符的 valuePattern 格式化值
      * <p>
      * 核心逻辑：
-     * 1. 获取操作符的valuePattern（如LIKE的"CONCAT('%', ?, '%')"）
-     * 2. 根据操作符类型进行特殊处理
-     * 3. 对于标准操作符，直接替换valuePattern中的"?"占位符
-     * 4. 对于特殊操作符（IN、BETWEEN等），进行特定的格式转换
+     * 1. 获取操作符的valuePattern（如LIKE的"CONCAT('%', ?, '%')"）<br>
+     * 2. 根据操作符类型进行特殊处理 <br>
+     * 3. 对于标准操作符，直接替换valuePattern中的"?"占位符 <br>
+     * 4. 对于特殊操作符（IN、BETWEEN等），进行特定的格式转换 <br>
      * </p>
      *
      * @param value    已解析或固定值（如 "'admin'", "1,2", "100"）
      * @param operator 查询条件操作符（如EQUAL, LIKE, IN）
-     * @return 格式化后的SQL值（如 "'admin'", "CONCAT('%', 'admin', '%')", "(1,2)"）
+     * @return {@link String} 格式化后的SQL值（如 "'admin'", "CONCAT('%', 'admin', '%')", "(1,2)"）
      * @author payne.zhuang
      * @CreateTime 2025-06-02 - 16:23
      */
@@ -221,10 +221,10 @@ public class DataScopeVariableResolver {
                 if (parts.length >= 2) {
                     return parts[0].trim() + StringPools.AND + parts[1].trim();
                 }
-                // 降级到valuePattern
+                // 降级到 valuePattern
                 return valuePattern.replace(StringPools.AND_PATTERN, value);
 
-            // 处理IS_NULL和IS_NOT_NULL操作符
+            // 处理 IS_NUL L和 IS_NOT_NULL 操作符
             // 逻辑：这些操作符不需要值，SQL直接使用"field IS NULL"
             // 输出：空字符串
             case IS_NULL, IS_NOT_NULL:

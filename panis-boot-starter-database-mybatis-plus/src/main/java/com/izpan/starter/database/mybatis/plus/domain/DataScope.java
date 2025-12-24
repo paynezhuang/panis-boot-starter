@@ -19,6 +19,7 @@
 
 package com.izpan.starter.database.mybatis.plus.domain;
 
+import com.izpan.starter.database.mybatis.plus.enums.DataScopeTypeEnum;
 import lombok.Builder;
 import lombok.Data;
 
@@ -44,10 +45,9 @@ public class DataScope implements Serializable {
     private static final long serialVersionUID = -2024640053806172796L;
 
     /**
-     * 数据权限类型
-     * 对应 DataScopeTypeEnum 枚举值
+     * 数据权限类型枚举
      */
-    private String scopeType;
+    private DataScopeTypeEnum scopeType;
 
     /**
      * 当前登录用户 ID
