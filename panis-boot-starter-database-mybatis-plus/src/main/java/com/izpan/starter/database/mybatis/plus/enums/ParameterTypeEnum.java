@@ -21,8 +21,6 @@ package com.izpan.starter.database.mybatis.plus.enums;
 
 import lombok.Getter;
 
-import java.io.Serializable;
-
 /**
  * 参数类型枚举，定义操作符和变量的值类型
  *
@@ -33,7 +31,7 @@ import java.io.Serializable;
  */
 
 @Getter
-public enum ParameterTypeEnum implements Serializable {
+public enum ParameterTypeEnum {
     SCALAR,     // 单值类型（如用户 ID、名称）
     LIST,       // 集合类型（如角色 ID 列表）
     RANGE,      // 区间类型（如时间范围）

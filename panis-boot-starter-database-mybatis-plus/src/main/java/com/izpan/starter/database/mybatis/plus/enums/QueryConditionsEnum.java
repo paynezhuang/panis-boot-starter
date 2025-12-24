@@ -22,7 +22,6 @@ package com.izpan.starter.database.mybatis.plus.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -36,7 +35,7 @@ import java.util.Arrays;
 
 @Getter
 @AllArgsConstructor
-public enum QueryConditionsEnum implements Serializable {
+public enum QueryConditionsEnum {
 
     EQUAL("equal", "=", "等于", "?", ParameterTypeEnum.SCALAR),
     NO_EQUAL("noEqual", "!=", "不等于", "?", ParameterTypeEnum.SCALAR),
